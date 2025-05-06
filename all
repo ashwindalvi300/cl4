@@ -1,0 +1,130 @@
+####################################################################################### Practical 4 ####################################################################################
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report
+
+iris = load_iris()
+
+
+X = iris.data
+y = iris.target
+
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+
+logreg = LogisticRegression()
+logreg.fit(X_train_scaled, y_train)
+
+
+y_pred_train = logreg.predict(X_train_scaled)
+y_pred_test = logreg.predict(X_test_scaled)
+
+
+
+train_accuracy = accuracy_score(y_train, y_pred_train)
+test_accuracy = accuracy_score(y_test, y_pred_test)
+
+
+
+print("Training Accuracy : ", train_accuracy)
+print("Testing Accuracy : ", test_accuracy)
+
+print("Classification Report on Test Data : ")
+print(classification_report(y_test, y_pred_test))
+
+
+####################################################################################### Practical 5 ####################################################################################
+
+from sklearn.datasets import load_iris
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+iris = load_iris()
+
+X = iris.data
+
+kmeans = KMeans(n_clusters=3)
+kmeans.fit(X)
+
+centroids = kmeans.cluster_centers_
+labels = kmeans.labels_
+
+plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='viridis')
+plt.scatter(centroids[:, 0], centroids[:, 1], marker='X', s=200, c='red')
+plt.title('K-Means Clustering')
+plt.xlabel('Feature 1')
+plt.ylabel('Feature 2')
+plt.show()
+
+
+
+####################################################################################### Practical 6 ####################################################################################
+
+
+
+
+####################################################################################### Practical 7 ####################################################################################
+
+def map_function(student_scores):
+    """
+    Emits tuples of student_id and score.
+    """
+    for student_id, score in student_scores:
+        yield student_id, score
+
+def reduce_function(mapped_data):
+    """
+    Assigns grades based on scores.
+    """
+    grades = {}
+    for student_id, score in mapped_data:
+        if score > 80:
+            grade = 'A'
+        elif score > 60:
+            grade = 'B'
+        elif score > 40:
+            grade = 'C'
+        else:
+            grade = 'D'
+        grades[student_id] = grade
+    return grades
+
+def map_reduce(student_scores):
+    """
+    Simulates the MapReduce process for assigning grades to students based on scores.
+    """
+    mapped_data = list(map_function(student_scores))
+    grades = reduce_function(mapped_data)
+    return grades
+
+student_scores = []
+
+n = int(input("Enter the number of students: "))
+
+for i in range(n): # replace i with _ in .py file
+    while True:
+        try:
+            student_id = int(input("Enter student ID: "))
+            break
+        except ValueError:
+            print("Invalid ID. Please enter an integer.")
+    while True:
+        try:
+            score = float(input("Enter score for student {}: ".format(student_id)))
+            break
+        except ValueError:
+            print("Invalid score. Please enter a number.")
+    student_scores.append((student_id, score))
+
+grades = map_reduce(student_scores)
+for student_id, grade in grades.items():
+    print(f"Student {student_id} has been assigned grade {grade}.")
