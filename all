@@ -1,4 +1,4 @@
-######################################################################## Practical 4 - Classification Algorithm ##########################################################################
+######################################################################## Practical 3 - Classification Algorithm ##########################################################################
 
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
@@ -42,7 +42,7 @@ print("Classification Report on Test Data : ")
 print(classification_report(y_test, y_pred_test))
 
 
-######################################################################### Practical 5 - Clustering Algorithm ################################################################################
+######################################################################### Practical 4 - Clustering Algorithm ################################################################################
 
 from sklearn.datasets import load_iris
 from sklearn.cluster import KMeans
@@ -67,7 +67,7 @@ plt.show()
 
 
 
-################################################################################ Practical 6 - Word Freequency ############################################################################
+################################################################################ Practical 5 - Word Freequency ############################################################################
 
 import string
 
@@ -92,7 +92,7 @@ target_word = 'Hello'
 frequency = map_reduce(file_path, target_word)
 print(f"The word '{target_word}' appears {frequency} times.")
 
-############################################################################### Practical 8 - Student Grade #############################################################################
+############################################################################### Practical 7 - Student Grade #############################################################################
 
 def map_function(student_scores):
     """
@@ -150,7 +150,7 @@ for student_id, grade in grades.items():
     print(f"Student {student_id} has been assigned grade {grade}.")
 
 
-############################################################################### Practical 9 - Gender based analysis #############################################################################
+############################################################################### Practical 8 - Gender based analysis #############################################################################
 
 import pandas as pd
 import matplotlib.pyplot as plt
