@@ -67,10 +67,30 @@ plt.show()
 
 
 
-####################################################################################### Practical 6 ####################################################################################
+################################################################################ Practical 6 - Word Freequency ############################################################################
 
+import string
 
+def map_reduce(file_path, target_word):
+    word_count = 0
+    with open(file_path, 'r') as file:
+        # Remove punctuation from words
+        mapped_data = [
+            (word.lower().translate(str.maketrans('', '', string.punctuation)), 1)
+            for line in file for word in line.strip().split()
+        ]
 
+    for word, count in mapped_data:
+        if word == target_word.lower():
+            word_count += count
+
+    return word_count
+
+file_path = 'G.txt'
+target_word = 'Hello'
+
+frequency = map_reduce(file_path, target_word)
+print(f"The word '{target_word}' appears {frequency} times.")
 
 ############################################################################### Practical 8 - Student Grade #############################################################################
 
