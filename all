@@ -207,3 +207,20 @@ average_age, female_class_count = map_reduce_with_pandas(df)
 print(f"Average age of males who died: {average_age:.2f}")
 print("Number of deceased females in each class:")
 print(female_class_count)
+
+
+################################################################################### Practical 9 Mongo DB ##############################################################################
+
+use myNewDatabase 
+
+db.myNewCollection.insertOne({name: "John Doe", age: 30}) 
+
+db.myNewCollection.insertOne({name: "Jane Doe", age: 25}) 
+
+db.myNewCollection.findOne({name: "John Doe"})
+
+db.myNewCollection.update One ({name: "John Doe"}, {$set: {age: 31}}) 
+
+db.myNewCollection.deleteOne({name: "Bob"}) 
+
+########################################################################################################################################################################################
